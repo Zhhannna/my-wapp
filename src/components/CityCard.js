@@ -1,37 +1,28 @@
-// src/components/CityCard.js
 import React from "react";
-import sunnyIcon from "../icons/sunny.svg";
-import cloudyIcon from "../icons/cloudy.svg";
-import partlyCloudyIcon from "../icons/partly-cloudy.svg";
-import fogIcon from "../icons/fog.svg";
-import snowIcon from "../icons/snow.svg";
-import drizzleIcon from "../icons/drizzle.svg";
-import thunderstormIcon from "../icons/thunderstorm.svg";
-import rainIcon from "../icons/rain.svg";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-function CityCard({ city, onClick }) {
-  const conditionIcons = {
-    Sunny: sunnyIcon,
-    Cloudy: cloudyIcon,
-    "Partly Cloudy": partlyCloudyIcon,
-    Fog: fogIcon,
-    Snow: snowIcon,
-    Drizzle: drizzleIcon,
-    Thunderstorm: thunderstormIcon,
-    Rain: rainIcon,
-  };
+function convertTemp(temp, unit) {
+  if (unit === "C") return temp;
+  if (unit === "F") return Math.round((temp * 9) / 5 + 32);
+  if (unit === "K") return Math.round(temp + 273.15);
+  return temp;
+}
+
+function CityCard({ city }) {
+  const unit = useSelector((state) => state.temperature.unit);
 
   return (
-    <div className="city-card" onClick={() => onClick(city)}>
-      <h3 className="city-name">{city.city}</h3>
-      <img
-        src={conditionIcons[city.condition]}
-        alt={city.condition}
-        className="condition-icon"
-      />
-      <div className="temperature">{city.temperature}°C</div>
-      <p className="condition-text">{city.condition}</p>
-    </div>
+    <Link to={`/city/${city.id}`} style={{ textDecoration: "none", color: "white" }}>
+      <div className="city-card">
+        <img src={city.icon} alt={city.condition} className="condition-icon" />
+        <h3>{city.city}</h3>
+        <div className="temperature">
+          {convertTemp(city.temperature, unit)}°{unit}
+        </div>
+        <div className="condition-text">{city.condition}</div>
+      </div>
+    </Link>
   );
 }
 
