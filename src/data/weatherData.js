@@ -23,22 +23,22 @@ const weatherData = [
   {
     id: 2,
     city: "London",
-    temperature: 12,
-    condition: "Rainy",
+    temperature: -2,
+    condition: "Snow",
     windSpeed: "20 km/h",
     windDirection: "SW",
     clouds: "90%",
     precipitation: {
       chance: "60%",
-      type: "Rain",
+      type: "Snowy",
       amount: "4 mm"
     },
     forecast: [
-      { day: "Mon", temp: 13, condition: "Cloudy" },
-      { day: "Tue", temp: 11, condition: "Rain" },
-      { day: "Wed", temp: 14, condition: "Sunny" },
-      { day: "Thu", temp: 12, condition: "Rain" },
-      { day: "Fri", temp: 15, condition: "Sunny" }
+      { day: "Mon", temp: 0, condition: "Cloudy" },
+      { day: "Tue", temp: 1, condition: "Rain" },
+      { day: "Wed", temp: 4, condition: "Sunny" },
+      { day: "Thu", temp: 2, condition: "Rain" },
+      { day: "Fri", temp: 5, condition: "Sunny" }
     ]
   },
   {

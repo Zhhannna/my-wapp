@@ -1,26 +1,24 @@
-import { useState } from "react";
+// src/App.js
+import React, { useState } from "react";
 import CityList from "./components/CityList";
 import CityDetails from "./components/CityDetails";
 import weatherData from "./data/weatherData";
-import './App.css'; // keep your CSS
+import "./App.css";
 
 function App() {
-  const [selectedCity, setSelectedCity] = useState(null); // Stores clicked city
+  const [selectedCity, setSelectedCity] = useState(null);
 
-  // Function when a city card is clicked
   const handleSelectCity = (city) => {
-    setSelectedCity(city); // Set selected city
+    setSelectedCity(city);
   };
 
-  // Function to go back to city list
   const handleBack = () => {
-    setSelectedCity(null); // Deselect city
+    setSelectedCity(null);
   };
 
   return (
-    <div className="App" style={{ padding: "20px", fontFamily: "Arial" }}>
-      <h1>Weather App</h1>
-
+    <div className="App">
+      <h1 className="app-title">Clime</h1>
       {selectedCity ? (
         <CityDetails city={selectedCity} onBack={handleBack} />
       ) : (

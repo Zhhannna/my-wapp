@@ -1,38 +1,193 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* src/App.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at top left, #0d0f2c, #1b1d3f);
+  color: #fff;
   min-height: 100vh;
+}
+
+/* Full screen flex container */
+.App {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* App title */
+.app-title {
+  font-size: 6rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 50px;
+  text-shadow: 0 0 20px #5d78ff, 0 0 40px #5d78ff55;
+}
+
+/* City List grid */
+.city-list {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 20px;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+/* Glass card style - bigger */
+.city-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 25px;
+  padding: 25px;        /* increased padding */
+  width: 220px;         /* bigger width */
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.city-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(93, 120, 255, 0.6);
+}
+
+/* City name in card */
+.city-card h3 {
+  margin: 10px 0;
+  font-size: 1.4rem;
+}
+
+/* Temperature in card */
+.city-card .temperature {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 7px 0;
+  text-shadow: 0 0 10px #5d78ff;
+}
+
+/* Weather icon in card */
+.city-card .condition-icon {
+  width: 40px;
+  height: 40px;
+  margin: 7px 0;
+}
+
+/* City Details Page */
+.city-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 750px;
+  gap: 25px;
+  padding-bottom: 40px;
+}
+
+/* Main weather section */
+.main-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* City name and temperature */
+.city-name {
+  font-size: 2.8rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 18px #5d78ff;
+}
+
+.temperature-large {
+  font-size: 3.3rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 18px #5d78ff;
+}
+
+/* Condition icon in details */
+.condition-icon-large {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 12px;
+}
+
+/* Back button */
+.back-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 18px;
+  padding: 12px 25px;
+  cursor: pointer;
+  color: #fff;
+  text-shadow: 0 0 12px #5d78ff;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 25px #5d78ff55;
+}
+
+/* Weather Info Boxes */
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.weather-info > div {
+  padding: 12px 18px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 0 12px rgba(0,0,0,0.35);
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+/* Forecast section */
+.forecast-list {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+/* Forecast bubble */
+.forecast-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  padding: 10px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 0 12px rgba(0,0,0,0.35);
+}
+
+.forecast-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.forecast-day {
+  font-weight: bold;
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+.forecast-temp {
+  font-size: 1rem;
+  margin: 4px 0;
+}
+
+.forecast-condition {
+  font-size: 0.9rem;
 }
