@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import CityList from "./components/CityList";
+import CityDetails from "./components/CityDetails";
+import weatherData from "./data/weatherData";
+import './App.css'; // keep your CSS
 
 function App() {
+  const [selectedCity, setSelectedCity] = useState(null); // Stores clicked city
+
+  // Function when a city card is clicked
+  const handleSelectCity = (city) => {
+    setSelectedCity(city); // Set selected city
+  };
+
+  // Function to go back to city list
+  const handleBack = () => {
+    setSelectedCity(null); // Deselect city
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{ padding: "20px", fontFamily: "Arial" }}>
+      <h1>Weather App</h1>
+
+      {selectedCity ? (
+        <CityDetails city={selectedCity} onBack={handleBack} />
+      ) : (
+        <CityList cities={weatherData} onSelectCity={handleSelectCity} />
+      )}
     </div>
   );
 }
