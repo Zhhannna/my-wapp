@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleFavorite } from "../store/temperatureSlice";
 
 function convertTemp(temp, unit) {
-  if (unit === "C") return temp;
+  if (unit === "C") return Math.round(temp);
   if (unit === "F") return Math.round((temp * 9) / 5 + 32);
   if (unit === "K") return Math.round(temp + 273.15);
   return temp;
@@ -19,7 +19,7 @@ function CityCard({ city }) {
   const isFavorite = favorites.includes(city.id);
 
   const handleFavoriteClick = (e) => {
-    e.preventDefault(); // prevent navigation when clicking star
+    e.preventDefault();
     dispatch(toggleFavorite(city.id));
   };
 
@@ -29,18 +29,14 @@ function CityCard({ city }) {
       style={{ textDecoration: "none", color: "white" }}
     >
       <div className="city-card">
-        <button
-          onClick={handleFavoriteClick}
-          style={{
-            border: "none",
-            background: "transparent",
-            cursor: "pointer",
-            fontSize: "1.5rem",
-            alignSelf: "flex-end"
-          }}
-        >
-          {isFavorite ? "★" : "☆"}
-        </button>
+<button
+  className="favorite-btn"
+  onClick={handleFavoriteClick}
+>
+  {isFavorite ? "★" : "☆"}
+</button>
+
+
         <img src={city.icon} alt={city.condition} className="condition-icon" />
         <h3>{city.city}</h3>
         <div className="temperature">

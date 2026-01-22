@@ -4,6 +4,8 @@ import "./App.css";
 import { Routes, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+import Navbar from "./components/Navbar";
+import Favorites from "./components/Favorites";
 import CityList from "./components/CityList";
 import CityDetails from "./components/CityDetails";
 import weatherData from "./data/weatherData";
@@ -48,12 +50,15 @@ function App() {
         </Link>
       </h1>
 
-      <TemperatureToggle />
+      <Navbar />
 
       <Routes>
         <Route path="/" element={<CityList cities={weatherData} />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/city/:id" element={<CityDetails />} />
       </Routes>
+
+      <TemperatureToggle />
     </div>
   );
 }
