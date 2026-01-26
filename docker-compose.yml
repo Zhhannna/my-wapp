@@ -1,8 +1,14 @@
+<<<<<<< HEAD
+=======
+version: "3.8"
+
+>>>>>>> 2b66b84470356299839a21592643cd90d4dfe6a1
 services:
   weather-app:
     build: .
     ports:
       - "8080:80"
+<<<<<<< HEAD
     depends_on:
       - db
 
@@ -14,3 +20,5 @@ services:
     command: sh -c "npm install -g json-server && json-server --watch db.json --port 5000"
     ports:
       - "5050:5000"
+=======
+>>>>>>> 2b66b84470356299839a21592643cd90d4dfe6a1

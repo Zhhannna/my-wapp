@@ -9,7 +9,10 @@
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.13.2",
+<<<<<<< HEAD
     "json-server": "^1.0.0-beta.5",
+=======
+>>>>>>> 2b66b84470356299839a21592643cd90d4dfe6a1
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-redux": "^9.2.0",
