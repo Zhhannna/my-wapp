@@ -1,24 +1,37 @@
-<<<<<<< HEAD
-=======
-version: "3.8"
-
->>>>>>> 2b66b84470356299839a21592643cd90d4dfe6a1
+version: "3.9"
 services:
   weather-app:
     build: .
     ports:
       - "8080:80"
-<<<<<<< HEAD
     depends_on:
-      - db
+      - backend
 
-  db:
-    image: node:18-alpine
-    working_dir: /app
-    volumes:
-      - ./db.json:/app/db.json
-    command: sh -c "npm install -g json-server && json-server --watch db.json --port 5000"
+  backend:
+    build: ./backend
     ports:
-      - "5050:5000"
-=======
->>>>>>> 2b66b84470356299839a21592643cd90d4dfe6a1
+      - "4000:4000"
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: weatheruser
+      MYSQL_PASSWORD: weatherpass
+      MYSQL_DATABASE: weatherapp
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: weatherapp
+      MYSQL_USER: weatheruser
+      MYSQL_PASSWORD: weatherpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  mysql_data:
