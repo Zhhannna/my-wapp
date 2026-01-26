@@ -1,0 +1,16 @@
+services:
+  weather-app:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+  db:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - ./db.json:/app/db.json
+    command: sh -c "npm install -g json-server && json-server --watch db.json --port 5000"
+    ports:
+      - "5050:5000"
