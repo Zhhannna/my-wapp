@@ -1,5 +1,10 @@
 {
   "favorites": [
-    { "id": 1, "city": "Wrocław" }
+    { "id": 1, "city": "Wrocław" },
+    { "id": 2, "city": "Berlin" },
+    { "id": 3, "city": "London" },
+    { "id": 4, "city": "New York" },
+    { "id": 5, "city": "Paris" },
+    { "id": 6, "city": "Warsaw" }
   ]
 }
