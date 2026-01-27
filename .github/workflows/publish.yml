@@ -1,12 +1,25 @@
-name: Publish Docker Image
+name: Publish Image
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   publish:
-    uses: ./.github/workflows/docker-build.yml
-    with:
-      image_name: my-wapp
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u zhhannna --password-stdin
+
+      - name: Build Docker image
+        run: docker build -t ghcr.io/zhhannna/my-wapp:latest .
+
+      - name: Push Docker image
+        run: docker push ghcr.io/zhhannna/my-wapp:latest
