@@ -5,16 +5,35 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-lint:
+  build-and-publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - run: npm install
-      - run: npm run lint
-      - run: npm run build
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Build app
+        run: npm run build
+
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build Docker image
+        run: docker build -t ghcr.io/${{ github.repository }}/my-wapp:latest .
+
+      - name: Push Docker image
+        run: docker push ghcr.io/${{ github.repository }}/my-wapp:latest
